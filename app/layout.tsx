@@ -1,5 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import GoogleAnalyticsTracker from '@/components/GoogleAnalyticsTracker'
 
@@ -19,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
-        <GoogleAnalyticsTracker />
+        <Suspense fallback={null}>
+          <GoogleAnalyticsTracker />
+        </Suspense>
       </body>
       {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
     </html>
