@@ -2,11 +2,15 @@
 
 import { useEffect } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { pageview } from '@/lib/analytics'
+import { initAnalytics, pageview } from '@/lib/analytics'
 
 export default function GoogleAnalyticsTracker() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
+
+  useEffect(() => {
+    initAnalytics()
+  }, [])
 
   useEffect(() => {
     const query = searchParams.toString()
